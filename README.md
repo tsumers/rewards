@@ -1,10 +1,10 @@
 # Learning Rewards from Linguistic Feedback
 
-This repository contains the (1) data, (2) model training, and (3) analysis code  used for Learning Rewards from Language.
+This repository contains (1) data, (2) model training, and (3) model analysis code.
 
 ## Requirements
 
-Install requirements:
+Install the environment via Conda:
 ```
 $ conda env create -f environment.yml
 ```
@@ -27,7 +27,6 @@ $ jupyter lab
 ### Datasets
 
 The human-human and human-agent datasets can be explored with the `aaai_experiment_data_exploration.ipynb` notebook.
-
 
 ### Training
 
