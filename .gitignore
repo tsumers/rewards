@@ -1,0 +1,6 @@
+.idea
+*.pyc
+notebooks/.ipynb_checkpoints
+*.png
+notebooks/data
+notebooks/neurips_notebooks/.ipynb_checkpoints

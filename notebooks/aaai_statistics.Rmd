@@ -1,0 +1,66 @@
+---
+title: "Naive curriculum regression statistics"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+# Import dependencies and data
+
+```{r}
+library(tidyverse)
+library(lme4)
+library(tidyboot)
+library(multcomp)
+
+# recode interactive as a factor, and re-order learner_model levels
+d <- read_csv('/data/regression_input.csv') %>%
+  filter(learner_model != 'human') %>%
+  mutate(interactive = factor(ifelse(interactive, 'int', 'non-int')),
+         learner_model = fct_relevel(learner_model, 
+                                     'literal', 'pragmatic', 'neural')) 
+```
+
+# Double-check figure
+
+```{r}
+d %>%
+  group_by(level_number, learner_model, interactive) %>%
+  tidyboot_mean(pct_max_score) %>%
+  ggplot(aes(x = level_number, y = empirical_stat, color = learner_model)) +
+    geom_line() +
+    geom_errorbar(aes(ymin = ci_lower, ymax = ci_upper), width = 0) +
+    facet_wrap(~ interactive) +
+    theme_bw()
+```
+
+# Compute statistics
+
+```{r}
+model = lm(pct_max_score ~ level_number + learner_model + interactive,
+           data = d,
+           contrasts = list(interactive = contr.sum(2),
+                            learner_model = contr.helmert(3)))
+
+# Examine the parameter estimates
+summary(model)
+```
+
+Post-hoc pairwise comparisons using tukey method
+
+```{r}
+model %>%
+  glht(mcp(learner_model = 'Tukey')) %>%
+  confint()
+```
+
+Note that no more complicated interaction model is significantly better.
+
+```{r}
+alt_model = lm(pct_max_score ~ level_number * learner_model * interactive,
+           data = d,
+           contrasts = list(interactive = contr.sum(2),
+                            learner_model = contr.helmert(3)))
+
+anova(model, alt_model)
+```
