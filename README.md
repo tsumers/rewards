@@ -38,8 +38,6 @@ Evaluation code / scripts are in the `aaai_model_evaluation.ipynb.ipynb` noteboo
 
 These can be run independently of the training notebook.
 
-Running the full evaluation on a Macbook Pro takes some time (~1 hour) and produces ~100mb worth of output, which is cached in the `notebooks/data/model_training_10fold/benchmarks` subfolder.
-
 ### Pre-trained Models
 
 Pretrained models are available in the `data/model_training_10fold` subdirectory. There is one `.pt` file for each cross-validation split. These models are loaded and used automatically in the `aaai_model_evaluation.ipynb` notebook.
