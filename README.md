@@ -43,4 +43,4 @@ Running the full evaluation on a Macbook Pro takes some time (~1 hour) and produ
 
 ### Pre-trained Models
 
-Pretrained models are available in the `notebooks/data/model_training_10fold` subdirectory. There is one `.pt` file for each cross-validation split. These models are loaded and used automatically in the `aaai_model_evaluation.ipynb` notebook.
+Pretrained models are available in the `data/model_training_10fold` subdirectory. There is one `.pt` file for each cross-validation split. These models are loaded and used automatically in the `aaai_model_evaluation.ipynb` notebook.
