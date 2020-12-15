@@ -1,5 +1,5 @@
 ---
-title: "Naive curriculum regression statistics"
+title: "Rewards from Language Regression Statistics"
 output: html_notebook
 ---
 
