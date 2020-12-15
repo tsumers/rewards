@@ -1,6 +1,6 @@
 # Learning Rewards from Linguistic Feedback
 
-This repository contains (1) data, (2) model training, and (3) model analysis code.
+This repository contains (1) data, (2) model training, and (3) model analysis code to support the paper: https://arxiv.org/abs/2009.14715
 
 ## Requirements
 
