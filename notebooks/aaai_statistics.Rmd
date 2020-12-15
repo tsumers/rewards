@@ -10,11 +10,12 @@ This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute
 ```{r}
 library(tidyverse)
 library(lme4)
+library(lmerTest)
 library(tidyboot)
 library(multcomp)
 
 # recode interactive as a factor, and re-order learner_model levels
-d <- read_csv('/data/regression_input.csv') %>%
+d <- read_csv('data/regression_input.csv') %>%
   filter(learner_model != 'human') %>%
   mutate(interactive = factor(ifelse(interactive, 'int', 'non-int')),
          learner_model = fct_relevel(learner_model, 
@@ -46,6 +47,18 @@ model = lm(pct_max_score ~ level_number + learner_model + interactive,
 summary(model)
 ```
 
+try mixed effects model
+
+```{r}
+model <- lmer(pct_max_score ~ level_number * interactive + learner_model + (1 + learner_model | psiturk_log_uuid),
+           data = d,
+           contrasts = list(interactive = contr.sum(2),
+                            learner_model = contr.helmert(3)))
+
+# Examine the parameter estimates
+summary(model)
+```
+
 Post-hoc pairwise comparisons using tukey method
 
 ```{r}
@@ -57,7 +70,7 @@ model %>%
 Note that no more complicated interaction model is significantly better.
 
 ```{r}
-alt_model = lm(pct_max_score ~ level_number * learner_model * interactive,
+alt_model = lmer(pct_max_score ~ level_number * learner_model * interactive + (1 + learner_model | psiturk_log_uuid),
            data = d,
            contrasts = list(interactive = contr.sum(2),
                             learner_model = contr.helmert(3)))

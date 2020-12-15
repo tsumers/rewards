@@ -1,4 +1,6 @@
 .idea
+*.Rproj
+*.nb.html
 *.pyc
 notebooks/.ipynb_checkpoints
 *.png
