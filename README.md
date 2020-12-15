@@ -26,17 +26,19 @@ $ jupyter lab
 
 ### Datasets
 
-The human-human and human-agent datasets can be explored with the `aaai_experiment_data_exploration.ipynb` notebook.
+The human-human and human-agent datasets can be found in `notebooks/data/`: `human_trial_data.json` and `agent_trial_data.json` respectively.
+
+The easiest way to get started with them is to use the `aaai_experiment_data_exploration.ipynb` notebook.
 
 ### Training
 
-Training code / scripts are in the `aaai_inference_network_training.ipynb` notebook. 
+Training code / scripts are in the `aaai_inference_network_training.ipynb` notebook. The data augmentation step will cache results in the `notebooks/data/` subfolder.
 
 ### Evaluation
 
-Evaluation code / scripts are in the `aaai_model_evaluation.ipynb.ipynb` notebook. 
+Evaluation code / scripts are in the `aaai_model_evaluation.ipynb` notebook. 
 
-These can be run independently of the training notebook.
+These can be run independently of the training notebook and will use pretrained models. Running it will cache results in the `notebooks/data/` subfolder.
 
 ### Pre-trained Models
 
