@@ -16,6 +16,8 @@ $ python -m unittest
 
 ## Data Exploration
 
+`Appendix.pdf` contains additional information about models and experiments, including full transcripts from informative teacher-learner pairs. 
+
 Provided iPython notebooks under the `/notebooks` diectory can be used to explore datasets and re-run model evaluation.
 
 To run them:
